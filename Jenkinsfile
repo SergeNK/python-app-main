@@ -60,7 +60,3 @@ pipeline {
         }
     }
 }
-
-
-
-https://3000-port-krimgjl273aky57l.labs.kodekloud.com/max/python-app
