@@ -20,7 +20,7 @@ pipeline {
                         sh '''
                             set -ex
                             cd ./python-app
-                            ${params.PYTHON_VERSION} -m venv venv
+                            ${PYTHON_VERSION} -m venv venv
                             . venv/bin/activate
                             pip install -r requirements.txt
                         '''
