@@ -2,7 +2,7 @@ pipeline {
     agent any
 
     parameters {
-        string(name: 'REPO_URL', defaultValue: 'http://git-server:3000/max/python-app.git', description: 'the url')
+        string(name: 'REPO_URL', defaultValue: 'https://github.com/SergeNK/python-app-main.git', description: 'the url')
         string(name: 'REPO_DIR', defaultValue: "${env.WORKSPACE}/python-app", description: 'the dir')
         string(name: 'BRANCH_NAME', defaultValue: 'main', description: 'Branch to build')
         string(name: 'PYTHON_VERSION', defaultValue: 'python3', description: 'The version of python to use')
