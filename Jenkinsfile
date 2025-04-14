@@ -22,7 +22,6 @@ pipeline {
                             cd ./python-app
                             ${PYTHON_VERSION} -m venv venv
                             . venv/bin/activate
-                            apt install python3.10-venv
                             pip install -r requirements.txt
                         '''
 
