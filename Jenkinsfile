@@ -3,7 +3,7 @@ pipeline {
 
     parameters {
         string(name: 'REPO_URL', defaultValue: 'https://github.com/SergeNK/python-app-main.git', description: 'the url')
-        string(name: 'REPO_DIR', defaultValue: "${env.WORKSPACE}/python-app", description: 'the dir')
+        string(name: 'REPO_DIR', defaultValue: "${WORKSPACE}/python-app", description: 'the dir')
         string(name: 'BRANCH_NAME', defaultValue: 'main', description: 'Branch to build')
         string(name: 'PYTHON_VERSION', defaultValue: 'python3', description: 'The version of python to use')
         booleanParam(name: 'RUN_TESTS', defaultValue: true, description: 'Run tests?')
