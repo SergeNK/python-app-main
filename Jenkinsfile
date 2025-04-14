@@ -18,14 +18,13 @@ pipeline {
         stage ('Install dependencies') {
             steps {
                 script {
-                    dir("${params.REPO_DIR}") {
                         sh '''
                             set -ex
+                            cd ./python-app
                             ${params.PYTHON_VERSION} -m venv venv
                             . venv/bin/activate
                             pip install -r requirements.txt
                         '''
-                    }
                 }
             }
         }
