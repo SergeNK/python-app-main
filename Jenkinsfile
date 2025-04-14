@@ -20,7 +20,7 @@ pipeline {
                 script {
                     dir("${params.REPO_DIR}") {
                         sh '''
-                            set -e
+                            set -ex
                             ${params.PYTHON_VERSION} -m venv venv
                             . venv/bin/activate
                             pip install -r requirements.txt
