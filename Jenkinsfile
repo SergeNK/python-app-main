@@ -1,11 +1,11 @@
 pipeline {
     agent any
 
-    parameters {
-        string(name: 'REPO_URL', defaultValue: 'https://github.com/SergeNK/python-app-main.git', description: 'the url')
-        string(name: 'BRANCH_NAME', defaultValue: 'main', description: 'Branch to build')
-        string(name: 'PYTHON_VERSION', defaultValue: 'python3', description: 'The version of python to use')
-        booleanParam(name: 'RUN_TESTS', defaultValue: true, description: 'Run tests?')
+    environment {
+        REPO_URL = 'https://github.com/SergeNK/python-app-main.git'
+        BRANCH_NAME = 'main'
+        PYTHON_VERSION = 'python3'
+        RUN_TESTS = 'true'
     }
     stages {
         stage ('Checkout the specified branch') {
@@ -20,7 +20,7 @@ pipeline {
                         sh '''
                             set -ex
                             cd ./python-app
-                            "${params.PYTHON_VERSION}" -m venv venv
+                            ${params.PYTHON_VERSION} -m venv venv
                             . venv/bin/activate
                             pip install -r requirements.txt
                         '''
@@ -32,6 +32,7 @@ pipeline {
             steps {
                     sh '''
                         set -e
+                        cd ./python-app
                         . venv/bin/activate
                         pytest --junitxml=reports/test-results.xml
                     '''
@@ -43,6 +44,7 @@ pipeline {
 
                     sh '''
                         set -eo pipefail
+                        cd ./python-app
                         . venv/bin/activate
                         echo "Flask app will run for 60 seconds..."
                         timeout 60s python app.py || echo "App terminated after timeout, ignoring error"
